@@ -1,6 +1,13 @@
 import sys
 import time
 
+# define a funtion that writes to results.txt text file
+def Writetotext(ftext):
+    # open the text file 
+    f = open('results.txt','a')
+    f.write(str(ftext) + ", ")
+    f.close()
+
 def main(): 
     output = 0
     # checks if there are the right number of arguments
@@ -16,7 +23,9 @@ def main():
     # iterates over all numbers up to the input
     for i in range(in_arg):
         # prints the index
-        print("{}, ".format(i), end="")
+        #print("{}, ".format(i), end="")
+        # write to text
+        Writetotext(i)
     # gets the end time for the loop
     end_time = time.time()
 
@@ -27,3 +36,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+ 
