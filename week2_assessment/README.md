@@ -37,4 +37,5 @@ The real times are greater that the user .The system time were the smallest. The
 Repeat Adder
 
 When both number were small the times were less than 0.17 seconds.
-With one beg number and one small number the times were less that 0.04 seconds.
+With one big number and one small number the times were less that 0.04 seconds.
+Two big numbers resulted in times close to zero.
