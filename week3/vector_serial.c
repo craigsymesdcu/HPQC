@@ -22,8 +22,10 @@ int main(int argc, char **argv)
 
 
 	// TODO: put some code here that makes a more meaningful vector
+	
+	
 
-	// sums the vector
+		// sums the vector
 	int my_sum = sum_vector(my_vector, num_arg);
 
 	// prints the sum
@@ -59,7 +61,7 @@ void initialise_vector(int vector[], int size, int initial)
 	for (int i = 0; i < size; i++)
 	{
 		// sets the elements of the vector to the initial value
-		vector[i] = initial;
+		vector[i] = initial + i; // I added this to initilize with  a sequence of numbers 
 	}
 }
 
