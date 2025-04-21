@@ -5,7 +5,7 @@
 // declares the functions that will be called within main
 // note how declaration lines are similar to the initial line
 // of a function definition, but with a semicolon at the end;
-int check_args(int argc, char **argv);
+void check_args(int argc, char **argv, int *points, int *cycles, int *samples);
 void initialise_vector(double vector[], int size, double initial);
 void print_vector(double vector[], int size);
 int sum_vector(int vector[], int size);
@@ -17,11 +17,10 @@ void print_header(FILE** p_out_file, int points);
 int main(int argc, char **argv)
 {
 	// declare and initialise the numerical argument variable
-	int points = check_args(argc, argv);
+	//int points = check_args(argc, argv);
+	int points, cycles, samples;
+	check_args(argc, argv, &points, &cycles, &samples);
 
-	// creates variables for the vibration
-	int cycles = 5; // number of cycles to show
-	int samples = 25; // sampling rate in samples per cycle
 	int time_steps = cycles * samples + 1; // total timesteps
 	double step_size = 1.0/samples;
 
@@ -37,7 +36,7 @@ int main(int argc, char **argv)
 
 	// creates a file
 	FILE* out_file;
-     	out_file = fopen("data/string_wave.csv","w");
+     	out_file = fopen(argv[1],"w");
 	print_header(&out_file, points);
 
 	// iterates through each time step in the collection
@@ -162,26 +161,28 @@ void print_vector(double vector[], int size)
 }
 
 // defines a function that checks your arguments to make sure they'll do what you need
-int check_args(int argc, char **argv)
+void check_args(int argc, char **argv, int *points, int *cycles, int *samples)
 {
 	// declare and initialise the numerical argument
-	int num_arg = 0;
+	//int num_arg = 0;
 
 	// check the number of arguments
-	if (argc == 2) // program name and numerical argument
+	if (argc == 5) // program name and numerical argument
 	{
-		// declare and initialise the numerical argument
-		num_arg = atoi(argv[1]);
+
+		*points = atoi(argv[2]);
+		*cycles = atoi(argv[3]);
+		*samples = atoi(argv[4]);
+
 	}
 	else // the number of arguments is incorrect
 	{
 		// raise an error
 		fprintf(stderr, "ERROR: You did not provide a numerical argument!\n");
-		fprintf(stderr, "Correct use: %s [NUMBER]\n", argv[0]);
+		fprintf(stderr, "Correct use: %s [outfile] [points] [cycles] [samples]\n", argv[0]);
 
 		// and exit COMPLETELY
 		exit (-1);
 	}
-	return num_arg;
+	//return num_arg;
 }
-

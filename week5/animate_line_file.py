@@ -333,11 +333,10 @@ def main():
                                   fargs=(data, rope)) # arguments to the animate function
 
     # saves the animation to disk
-    filename = generate_path(basename = 'animate_string_file', extension = 'gif')
+    filename = generate_path(basename = sys.argv[2], extension = 'gif')
     ani.save(filename=filename, writer="pillow", fps=fps)
 
 
 # we use this convention to ensure that if we import functions from this script, it is not executed
 if __name__ == "__main__":
     main() # this is a good practice to get used to
-
